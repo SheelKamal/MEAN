@@ -1,0 +1,121 @@
+<div class="row">
+    <h3> {{title}}</h3>
+<div class="col-md-6 col-lg-6 well">
+<form #f="ngForm" (ngSubmit)="onSave()" [ngFormModel]="form">
+    <fieldset>
+        <legend>
+            Donor Details
+        </legend>
+        <div class="form-group">
+            Donor Name
+            <input 
+                [(ngModel)]="donor.name"
+                ngControl="name"
+                #name = "ngForm"  
+                type="text" 
+                id="name"
+                class = "form-control" 
+                required
+                minlength="3"/>
+                
+            <div *ngIf="name.touched && name.errors!= null">
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+                <div 
+                    class="alert alert-danger"
+                    *ngIf="name.errors.minlength">
+                    Name should have atleast {{name.errors.minlength.requiredLength}} characters.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            Email
+            <input 
+                [(ngModel)]="donor.email"
+                type="text" 
+                id="email" 
+                ngControl="email"
+                #email="ngForm" 
+                class = "form-control"
+                required/>
+             <div 
+                class="alert alert-danger"
+                *ngIf="email.touched && email.errors?.invalidEmail">
+                Please type a valid email.
+            </div>
+        </div>
+        <div class="form-group">
+            Phone Number
+            <input 
+                [(ngModel)]="donor.phone"
+                type="text" 
+                id="phone" 
+                ngControl="phone" 
+                class = "form-control" />
+        </div>
+         <div class="form-group">
+            Address
+            <input 
+                [(ngModel)]="donor.address"
+                type="text" 
+                id="address" 
+                ngControl="address" 
+                class = "form-control"/>
+        </div>
+    </fieldset>
+    <fieldset ngControlGroup = "product">
+         <legend>
+            Product Details
+        </legend>
+        <div class="form-group">
+            Title
+            <input 
+                [(ngModel)]="donor.product.tittle"
+                type="text" 
+                id="tittle" 
+                ngControl="tittle" 
+                class = "form-control"/>
+        </div>
+        <div class="form-group">
+            Description
+            <input 
+                [(ngModel)]="donor.product.description"
+                type="text" 
+                id="description" 
+                ngControl="description" 
+                class = "form-control"/>
+        </div>
+        <div class="form-group">
+            Category
+            <input 
+                [(ngModel)]="donor.product.category"
+                type="text" 
+                id="category" 
+                ngControl="category" 
+                class = "form-control"/>
+        </div>
+        <div class="form-group">
+            Image
+            <input 
+                [(ngModel)]="donor.product.image"
+                type="text" 
+                id="image" 
+                ngControl="image" 
+                class = "form-control"/>
+        </div>
+    </fieldset>
+    <div>
+        <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="!form.valid" >
+            Save
+        </button>
+    </div>
+
+</form>
+</div>
+</div>
